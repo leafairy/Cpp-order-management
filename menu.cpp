@@ -22,7 +22,7 @@ void Menu::writeFile()
 	ofs << menuList.size() << endl; //先写入菜单数量
 	for (int i = 0; i < menuList.size(); i++)
 	{
-		ofs << menuList[i].m_number << " " << menuList[i].m_name << " " << menuList[i].m_price << menuList[i].m_cost << endl;
+		ofs << menuList[i].m_number << " " << menuList[i].m_name << " " << menuList[i].m_price << " " << menuList[i].m_cost << endl;
 	}
 	ofs.close();
 }
