@@ -25,6 +25,7 @@ public:
 	double m_price;
 	double m_cost;
 	void readFile();
+	void init();
 	void writeFile();
 	void showAllDish();
 	void showHeader();

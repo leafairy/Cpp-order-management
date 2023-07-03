@@ -15,6 +15,11 @@ void Menu::readFile()
 	ifs.close();
 }
 
+void Menu::init()
+{
+	this->readFile();
+}
+
 void Menu::writeFile()
 {
 	ofstream ofs;
@@ -29,17 +34,36 @@ void Menu::writeFile()
 
 void Menu::showAllDish()
 {
-
+	system("cls");
+	cout << "\t\t-----------------------------------------------------------------------" << endl;
+	cout << "\t\t";
+	Menu::showHeader();
+	cout << "\t\t-----------------------------------------------------------------------" << endl;
+	for (int i = 0; i < menuList.size(); i++)
+	{
+		cout << "\t\t";
+		menuList[i].showDishInfo();
+	}
+	cout << "\t\t-----------------------------------------------------------------------" << endl;
+	cout << "\t\t";
+	system("pause");
 }
 
 void Menu::showHeader()
 {
+	cout << left << setw(12) << "菜号";
+	cout << left << setw(10) << "菜名";
+	cout << left << setw(6) << "价格";
+	cout << left << setw(8) << "成本" << endl;
 
 }
 
 void Menu::showDishInfo()
 {
-
+	cout << left << setw(12) << m_number;
+	cout << left << setw(10) << m_name;
+	cout << left << setw(6) << m_price;
+	cout << left << setw(8) << m_cost << endl;
 }
 
 void Menu::showMenu()
@@ -56,13 +80,15 @@ void Menu::showMenu()
 	cout << "\t\t\t|------------------------------------------|" << endl;
 	cout << "\t\t\t|             3   修改已有菜单             |" << endl;
 	cout << "\t\t\t|------------------------------------------|" << endl;
+	cout << "\t\t\t|             4   显示菜单信息             |" << endl;
+	cout << "\t\t\t|------------------------------------------|" << endl;
 	cout << "\t\t\t|             0   退出                     |" << endl;
 	cout << "\t\t\t|------------------------------------------|" << endl;
-	cout << "\t\t\t请选择【0-3】：";
+	cout << "\t\t\t请选择【0-4】：";
 	cin >> sel;
-	while (sel != "0" && sel != "1" && sel != "2" && sel != "3")
+	while (sel != "0" && sel != "1" && sel != "2" && sel != "3" && sel != "4")
 	{
-		cout << "\t\t\t输入不合法,请重新选择【0-3】：";
+		cout << "\t\t\t输入不合法,请重新选择【0-44】：";
 		cin >> sel;
 	}
 	if (sel == "1")
@@ -78,6 +104,11 @@ void Menu::showMenu()
 	else if (sel == "3")
 	{
 		this->updateDish();
+		this->showMenu();
+	}
+	else if (sel == "4")
+	{
+		this->showAllDish();
 		this->showMenu();
 	}
 	else if (sel == "0")
@@ -179,7 +210,7 @@ void Menu::deleteDish()
 		{
 			int keyNum;
 			bool flag = false;
-			cout << "\t\t请输入待删除的单号： ";
+			cout << "\t\t请输入待删除的菜号： ";
 			cin >> keyNum;
 			for (vector<Menu>::iterator it = menuList.begin(); it != menuList.end(); ++it)
 			{

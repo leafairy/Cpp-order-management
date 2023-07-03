@@ -129,6 +129,7 @@ void order::showMenu()
 		else if (sel == "5")
 		{
 			Menu m;
+			m.init();
 			m.showMenu();
 			this->showMenu();
 		}
